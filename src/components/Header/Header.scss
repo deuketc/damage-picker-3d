@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__logo-mark {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--accent);
+  }
+
+  &__logo-text {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-h);
+    letter-spacing: -0.3px;
+  }
+
+  &__nav-label {
+    font-size: 13px;
+    color: var(--text);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+}

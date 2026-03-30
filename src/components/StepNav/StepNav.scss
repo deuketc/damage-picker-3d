@@ -1,0 +1,38 @@
+.step-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+
+  &__btn {
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+
+    &--prev {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+
+      &:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+    }
+
+    &--next {
+      background: var(--accent);
+      border: 1px solid transparent;
+      color: #fff;
+
+      &:hover {
+        opacity: 0.85;
+      }
+    }
+  }
+}
