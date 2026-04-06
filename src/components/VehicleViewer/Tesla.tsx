@@ -6,9 +6,10 @@ import { useGLTF } from "@react-three/drei";
 import { usePolicyStore } from "../../store/usePolicyStore";
 import { useDamageStore } from "../../store/useDamageStore";
 import type { GLTF } from "three-stdlib";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import type { ThreeElement, ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
+import { LoopSubdivision } from "three-subdivide";
 
 const CLICK_THRESHOLD_MS = 200;
 const CLICK_THRESHOLD_PX = 4;
@@ -145,12 +146,12 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
   const hood = usePanelProps("hood", carPaintMaterial, damagedMaterial);
   const frontLeftMirror = usePanelProps(
     "front-left-mirror",
-    materials["Mirrors LP"],
+    carPaintMaterial,
     damagedMaterial,
   );
   const frontRightMirror = usePanelProps(
     "front-right-mirror",
-    materials["Mirrors LP"],
+    carPaintMaterial,
     damagedMaterial,
   );
   const windshield = usePanelProps(
@@ -183,375 +184,53 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
     materials["Glass LP"],
     damagedMaterial,
   );
+  const smoothHoodGeometry = useMemo(() => {
+    return LoopSubdivision.modify(nodes["select-hood"].geometry, 2, {
+      split: false,
+      uvSmooth: false,
+      preserveEdges: true,
+    });
+  }, [nodes]);
+  const smoothFrontBumperGeometry = useMemo(() => {
+    return LoopSubdivision.modify(nodes["select-front-bumper"].geometry, 2, {
+      split: false,
+      uvSmooth: false,
+      preserveEdges: true,
+    });
+  }, [nodes]);
+  const smoothBackBumperGeometry = useMemo(() => {
+    return LoopSubdivision.modify(nodes["select-back-bumper"].geometry, 2, {
+      split: false,
+      uvSmooth: false,
+      preserveEdges: true,
+    });
+  }, [nodes]);
+  const smoothBootGeometry = useMemo(() => {
+    return LoopSubdivision.modify(nodes["select-boot"].geometry, 2, {
+      split: false,
+      uvSmooth: false,
+      preserveEdges: true,
+    });
+  }, [nodes]);
+  const smoothWindowTopGeometry = useMemo(() => {
+    return LoopSubdivision.modify(nodes["select-window-top"].geometry, 2, {
+      split: false,
+      uvSmooth: false,
+      preserveEdges: true,
+    });
+  }, [nodes]);
+  const subdivOpts = { split: false, uvSmooth: false, preserveEdges: true };
+  const smoothBackDoorFrameRightGeometry = useMemo(() => LoopSubdivision.modify(nodes["select-back-door-frame-right"].geometry, 2, subdivOpts), [nodes]);
+  const smoothBackDoorFrameLeftGeometry = useMemo(() => LoopSubdivision.modify(nodes["select-back-door-frameleft"].geometry, 2, subdivOpts), [nodes]);
+  const smoothBackDoorLeftGeometry = useMemo(() => LoopSubdivision.modify(nodes["select-back-door-left"].geometry, 2, subdivOpts), [nodes]);
+  const smoothBackDoorRightGeometry = useMemo(() => LoopSubdivision.modify(nodes["select-back-door-right"].geometry, 2, subdivOpts), [nodes]);
+  const smoothFrontDoorFrameLeftGeometry = useMemo(() => LoopSubdivision.modify(nodes["select-front-door-frame-left"].geometry, 2, subdivOpts), [nodes]);
+  const smoothFrontDoorFrameRightGeometry = useMemo(() => LoopSubdivision.modify(nodes["select-front-door-frame-right"].geometry, 2, subdivOpts), [nodes]);
+  const smoothFrontDoorLeftGeometry = useMemo(() => LoopSubdivision.modify(nodes["select-front-door-left"].geometry, 2, subdivOpts), [nodes]);
+  const smoothFrontDoorRightGeometry = useMemo(() => LoopSubdivision.modify(nodes["select-front-door-right"].geometry, 2, subdivOpts), [nodes]);
+  const smoothLeftMirrorGeometry = useMemo(() => LoopSubdivision.modify(nodes["select-left-mirror"].geometry, 2, subdivOpts), [nodes]);
+  const smoothRightMirrorGeometry = useMemo(() => LoopSubdivision.modify(nodes["select-right-mirror"].geometry, 2, subdivOpts), [nodes]);
   return (
-    // <group {...props} dispose={null}>
-    //   <mesh
-    //     castShadow
-    //     receiveShadow
-    //     geometry={nodes.Cylinder.geometry}
-    //     material={materials["Tire LP"]}
-    //     position={[0.774, -0.316, 1.389]}
-    //     rotation={[0, 0, -Math.PI / 2]}
-    //     scale={[0.359, 0.146, 0.359]}
-    //   />
-    //   <mesh
-    //     castShadow
-    //     receiveShadow
-    //     geometry={nodes.Cylinder001.geometry}
-    //     material={materials["Tire LP"]}
-    //     position={[0.774, -0.316, -1.55]}
-    //     rotation={[0, 0, -Math.PI / 2]}
-    //     scale={[0.359, 0.146, 0.359]}
-    //   />
-    //   <mesh
-    //     castShadow
-    //     receiveShadow
-    //     geometry={nodes.Cylinder002.geometry}
-    //     material={materials["Tire LP"]}
-    //     position={[-0.771, -0.316, -1.547]}
-    //     rotation={[Math.PI, 0, Math.PI / 2]}
-    //     scale={[0.359, 0.146, 0.359]}
-    //   />
-    //   <mesh
-    //     castShadow
-    //     receiveShadow
-    //     geometry={nodes.Cylinder003.geometry}
-    //     material={materials["Tire LP"]}
-    //     position={[-0.771, -0.316, 1.391]}
-    //     rotation={[Math.PI, 0, Math.PI / 2]}
-    //     scale={[0.359, 0.146, 0.359]}
-    //   />
-    //   <group position={[0, -0.673, 0]} scale={2.394}>
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes.AirWent.geometry}
-    //       material={materials["Grill LP"]}
-    //       position={[0, 0.146, -0.914]}
-    //       rotation={[-Math.PI, 0, -Math.PI]}
-    //       scale={[0.044, 0.152, 0.005]}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes.Bottom.geometry}
-    //       material={materials.LightAbsorber}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes.Camera_front.geometry}
-    //       material={materials["Indicaters LP"]}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes.LightsFront.geometry}
-    //       material={materials["Lights LP"]}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[Math.PI, 0, Math.PI / 2]}
-    //       scale={[0.418, 0.417, 0.417]}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes.LightsRear.geometry}
-    //       material={materials["Lights LP"]}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes.Plane023.geometry}
-    //       material={materials["Metalic LP"]}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[0, 0, Math.PI / 2]}
-    //       scale={0.004}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-back-door-frame-right"].geometry}
-    //       material={carPaintMaterial}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-back-door-frameleft"].geometry}
-    //       material={carPaintMaterial}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-back-door-left"].geometry}
-    //       {...rearLeftDoor}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-back-door-right"].geometry}
-    //       {...rearRightDoor}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-back-window-right"].geometry}
-    //       {...rearRightWindow}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-boot"].geometry}
-    //       {...trunk}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-front-bumper"].geometry}
-    //       {...frontBumper}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-front-door-frame-left"].geometry}
-    //       material={carPaintMaterial}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-front-door-frame-right"].geometry}
-    //       material={carPaintMaterial}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-front-door-left"].geometry}
-    //       {...frontLeftDoor}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-front-door-right"].geometry}
-    //       {...frontRightDoor}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-hood"].geometry}
-    //       {...hood}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-left-mirror"].geometry}
-    //       {...frontLeftMirror}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.417}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-right-mirror"].geometry}
-    //       {...frontRightMirror}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.417}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["select-window-top"].geometry}
-    //       {...windshield}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes["selecty-back-bumber"].geometry}
-    //       {...rearBumper}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <group
-    //       position={[-0.326, 0.149, -0.645]}
-    //       rotation={[0, -1.571, 0]}
-    //       scale={0.417}
-    //     >
-    //       <mesh
-    //         castShadow
-    //         receiveShadow
-    //         geometry={nodes.BreakDisc003.geometry}
-    //         material={materials.brakes}
-    //         position={[0, 0, 0.028]}
-    //         rotation={[-Math.PI, 0, 0]}
-    //         scale={-0.7}
-    //       />
-    //       <mesh
-    //         castShadow
-    //         receiveShadow
-    //         geometry={nodes.RimAreo003.geometry}
-    //         material={materials["Rims LP"]}
-    //         position={[0, 0, 0.105]}
-    //         rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-    //         scale={0.263}
-    //       />
-    //     </group>
-    //     <group
-    //       position={[0.326, 0.149, -0.645]}
-    //       rotation={[0, Math.PI / 2, 0]}
-    //       scale={0.417}
-    //     >
-    //       <mesh
-    //         castShadow
-    //         receiveShadow
-    //         geometry={nodes.BreakDisc001.geometry}
-    //         material={materials.brakes}
-    //         position={[0, 0, 0.028]}
-    //         scale={0.7}
-    //       />
-    //       <mesh
-    //         castShadow
-    //         receiveShadow
-    //         geometry={nodes.RimAreo001.geometry}
-    //         material={materials["Rims LP"]}
-    //         position={[0, 0, 0.105]}
-    //         rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-    //         scale={0.263}
-    //       />
-    //     </group>
-    //     <group
-    //       position={[-0.326, 0.149, 0.58]}
-    //       rotation={[0, -1.571, 0]}
-    //       scale={0.417}
-    //     >
-    //       <mesh
-    //         castShadow
-    //         receiveShadow
-    //         geometry={nodes.BreakDisc004.geometry}
-    //         material={materials.brakes}
-    //         position={[0, 0, 0.028]}
-    //         scale={0.7}
-    //       />
-    //       <mesh
-    //         castShadow
-    //         receiveShadow
-    //         geometry={nodes.RimAreo004.geometry}
-    //         material={materials["Rims LP"]}
-    //         position={[0, 0, 0.105]}
-    //         rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-    //         scale={0.263}
-    //       />
-    //     </group>
-    //     <group
-    //       position={[0.326, 0.149, 0.58]}
-    //       rotation={[0, 1.571, 0]}
-    //       scale={0.417}
-    //     >
-    //       <mesh
-    //         castShadow
-    //         receiveShadow
-    //         geometry={nodes.BreakDisc002.geometry}
-    //         material={materials.brakes}
-    //         position={[0, 0, 0.028]}
-    //         rotation={[-Math.PI, 0, 0]}
-    //         scale={-0.7}
-    //       />
-    //       <mesh
-    //         castShadow
-    //         receiveShadow
-    //         geometry={nodes.RimAreo002.geometry}
-    //         material={materials["Rims LP"]}
-    //         position={[0, 0, 0.105]}
-    //         rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-    //         scale={0.263}
-    //       />
-    //     </group>
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes.WindowRim.geometry}
-    //       material={materials.LightAbsorber}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes.Windows001.geometry}
-    //       material={materials["Glass LP"]}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes.Windows002.geometry}
-    //       material={materials["Glass LP"]}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //     <mesh
-    //       castShadow
-    //       receiveShadow
-    //       geometry={nodes.Windows003.geometry}
-    //       material={materials["Glass LP"]}
-    //       position={[0, 0.153, 0.576]}
-    //       rotation={[-Math.PI, 0, Math.PI / 2]}
-    //       scale={0.177}
-    //     />
-    //   </group>
-    // </group>
     <group {...props} dispose={null}>
       <mesh
         castShadow
@@ -638,7 +317,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-back-bumper"].geometry}
+          geometry={smoothBackBumperGeometry}
           {...rearBumper}
           position={[0, 0.153, 0.576]}
           rotation={[Math.PI, 0, Math.PI / 2]}
@@ -647,7 +326,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-back-door-frame-right"].geometry}
+          geometry={smoothBackDoorFrameRightGeometry}
           {...rearRightDoor}
           position={[0, 0.153, 0.576]}
           rotation={[Math.PI, 0, Math.PI / 2]}
@@ -656,7 +335,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-back-door-frameleft"].geometry}
+          geometry={smoothBackDoorFrameLeftGeometry}
           {...rearLeftDoor}
           position={[0, 0.153, 0.576]}
           rotation={[Math.PI, 0, Math.PI / 2]}
@@ -665,7 +344,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-back-door-left"].geometry}
+          geometry={smoothBackDoorLeftGeometry}
           {...rearLeftDoor}
           position={[0, 0.153, 0.576]}
           rotation={[-Math.PI, 0, Math.PI / 2]}
@@ -674,7 +353,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-back-door-right"].geometry}
+          geometry={smoothBackDoorRightGeometry}
           {...rearRightDoor}
           position={[0, 0.153, 0.576]}
           rotation={[-Math.PI, 0, Math.PI / 2]}
@@ -710,7 +389,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-front-bumper"].geometry}
+          geometry={smoothFrontBumperGeometry}
           {...frontBumper}
           position={[0, 0.153, 0.576]}
           rotation={[Math.PI, 0, Math.PI / 2]}
@@ -719,7 +398,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-front-door-frame-left"].geometry}
+          geometry={smoothFrontDoorFrameLeftGeometry}
           {...frontLeftDoor}
           position={[0, 0.153, 0.576]}
           rotation={[Math.PI, 0, Math.PI / 2]}
@@ -728,7 +407,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-front-door-frame-right"].geometry}
+          geometry={smoothFrontDoorFrameRightGeometry}
           {...frontRightDoor}
           position={[0, 0.153, 0.576]}
           rotation={[Math.PI, 0, Math.PI / 2]}
@@ -737,7 +416,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-front-door-left"].geometry}
+          geometry={smoothFrontDoorLeftGeometry}
           {...frontLeftDoor}
           position={[0, 0.153, 0.576]}
           rotation={[-Math.PI, 0, Math.PI / 2]}
@@ -746,7 +425,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-front-door-right"].geometry}
+          geometry={smoothFrontDoorRightGeometry}
           {...frontRightDoor}
           position={[0, 0.153, 0.576]}
           rotation={[-Math.PI, 0, Math.PI / 2]}
@@ -773,7 +452,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-hood"].geometry}
+          geometry={smoothHoodGeometry}
           {...hood}
           position={[0, 0.153, 0.576]}
           rotation={[-Math.PI, 0, Math.PI / 2]}
@@ -782,7 +461,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-left-mirror"].geometry}
+          geometry={smoothLeftMirrorGeometry}
           {...frontLeftMirror}
           position={[0, 0.153, 0.576]}
           rotation={[-Math.PI, 0, Math.PI / 2]}
@@ -791,7 +470,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-right-mirror"].geometry}
+          geometry={smoothRightMirrorGeometry}
           {...frontRightMirror}
           position={[0, 0.153, 0.576]}
           rotation={[-Math.PI, 0, Math.PI / 2]}
@@ -800,7 +479,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes["select-window-top"].geometry}
+          geometry={smoothWindowTopGeometry}
           {...windshield}
           position={[0, 0.153, 0.576]}
           rotation={[-Math.PI, 0, Math.PI / 2]}
