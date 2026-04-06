@@ -21,7 +21,9 @@ export type CarPanel =
   | "front-left-window"
   | "front-right-window"
   | "rear-left-window"
-  | "rear-right-window";
+  | "rear-right-window"
+  | "front-left-mirror"
+  | "front-right-mirror";
 
 export interface PanelDamage {
   panel: CarPanel;
