@@ -66,6 +66,7 @@ export default function PolicyDetails() {
             id="registration"
             type="text"
             placeholder="e.g. ABC123"
+            maxLength={6}
             value={registration}
             onChange={(e) =>
               setField("registration", e.target.value.toUpperCase())

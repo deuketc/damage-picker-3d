@@ -17,7 +17,7 @@ const defaultDetails: PolicyDetails = {
   insurer: "",
   make: "",
   model: "",
-  registration: "",
+  registration: "ABC123",
   colour: "",
 };
 
