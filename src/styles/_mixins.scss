@@ -1,0 +1,56 @@
+// ──────────────────────────────────────────────────────────────────
+//  Global Mixins & Breakpoints
+//
+//  Usage in any .scss file:
+//    @use '../../styles/mixins' as *;
+//
+//  Then call mixins directly:
+//    @include mobile { ... }
+//    @include large-desktop { ... }
+// ──────────────────────────────────────────────────────────────────
+
+// ── Breakpoint tokens ─────────────────────────────────────────────
+//
+//  small-mobile  ←600px→  mobile  ←700px→  tablet  ←1100px→  desktop  ←1400px→  large-desktop  ←1800px→  ultrawide
+//
+$bp-small-mobile:  600px;
+$bp-mobile:        700px;
+$bp-tablet:       1100px;
+$bp-large-desktop: 1400px;
+$bp-ultrawide:     1800px;
+
+
+// ── Max-width mixins  (styles apply AT OR BELOW the named size) ───
+
+/// Small mobile — e.g. footer column stacking
+@mixin small-mobile {
+  @media (max-width: $bp-small-mobile) { @content; }
+}
+
+/// Mobile — single-column layout
+@mixin mobile {
+  @media (max-width: $bp-mobile) { @content; }
+}
+
+/// Tablet — two-column layout and below
+@mixin tablet {
+  @media (max-width: $bp-tablet) { @content; }
+}
+
+
+// ── Min-width mixins  (styles apply AT OR ABOVE the named size) ───
+
+/// Desktop — standard three-column layout (above tablet breakpoint)
+@mixin desktop {
+  @media (min-width: ($bp-tablet + 1px)) { @content; }
+}
+
+/// Large desktop — scaled-up UI
+@mixin large-desktop {
+  @media (min-width: $bp-large-desktop) { @content; }
+}
+
+/// Ultrawide — maximum scale
+@mixin ultrawide {
+  @media (min-width: $bp-ultrawide) { @content; }
+}

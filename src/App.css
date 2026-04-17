@@ -1,0 +1,113 @@
+.app-body {
+  display: grid;
+  grid-template-columns: clamp(220px, 20vw, 320px) 1fr clamp(200px, 18vw, 300px);
+  grid-template-areas: "left center right";
+  flex: 1;
+  min-height: 0;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: clamp(200px, 26vw, 280px) 1fr;
+    grid-template-areas: none;
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.app-sidebar-left {
+  grid-area: left;
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100svh - var(--header-h));
+  overflow-y: auto;
+
+  @media (max-width: 1100px) {
+    grid-column: 1;
+    grid-row: 1 / -1;
+  }
+
+  @media (max-width: 700px) {
+    grid-column: 1;
+    grid-row: 1;
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+.app-main {
+  grid-area: center;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  /* Dissolve the wrapper so children become direct grid participants */
+  @media (max-width: 1100px) {
+    display: contents;
+  }
+}
+
+/* When app-main has display:contents, these become direct grid children */
+.vehicle-viewer {
+  @media (max-width: 1100px) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  @media (max-width: 700px) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+}
+
+.vehicle-questions {
+  @media (max-width: 1100px) {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  @media (max-width: 700px) {
+    grid-column: 1;
+    grid-row: 4;
+  }
+}
+
+.step-nav {
+  @media (max-width: 1100px) {
+    grid-column: 2;
+    grid-row: 4;
+  }
+
+  @media (max-width: 700px) {
+    grid-column: 1;
+    grid-row: 5;
+  }
+}
+
+.app-sidebar-right {
+  grid-area: right;
+  border-left: 1px solid var(--border);
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100svh - var(--header-h));
+  overflow-y: auto;
+
+  /* Slot in at row 2 of the second column, between viewer and questions */
+  @media (max-width: 1100px) {
+    grid-column: 2;
+    grid-row: 2;
+    position: static;
+    height: auto;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  @media (max-width: 700px) {
+    grid-column: 1;
+    grid-row: 3;
+  }
+}

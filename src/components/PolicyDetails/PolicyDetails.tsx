@@ -40,24 +40,30 @@ export default function PolicyDetails() {
 
         <div className="policy-details__field">
           <label htmlFor="make">Make</label>
-          <input
+          <select
             id="make"
-            type="text"
-            placeholder="e.g. Toyota"
             value={make}
             onChange={(e) => setField("make", e.target.value)}
-          />
+          >
+            <option value="" disabled>
+              Select make
+            </option>
+            <option value="Tesla">Tesla</option>
+          </select>
         </div>
 
         <div className="policy-details__field">
           <label htmlFor="model">Model</label>
-          <input
+          <select
             id="model"
-            type="text"
-            placeholder="e.g. Corolla"
             value={model}
             onChange={(e) => setField("model", e.target.value)}
-          />
+          >
+            <option value="" disabled>
+              Select model
+            </option>
+            <option value="Model 3">Model 3</option>
+          </select>
         </div>
 
         <div className="policy-details__field">

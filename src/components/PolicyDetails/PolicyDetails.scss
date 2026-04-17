@@ -1,27 +1,28 @@
+@use '../../styles/mixins' as *;
+
 .policy-details {
-  padding: 24px;
-  border-bottom: 1px solid var(--border);
+  padding: 28px 20px;
+
+  @include large-desktop {
+    padding: 36px 28px;
+  }
 
   &__title {
-    margin: 0 0 20px;
-    font-size: 16px;
-    font-weight: 600;
+    margin: 0 0 28px;
+    font-size: clamp(1.4rem, 2.2vw, 3rem);
+    font-weight: 700;
     color: var(--text-h);
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 1fr;
     gap: 16px;
 
-    @media (max-width: 900px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (max-width: 480px) {
-      grid-template-columns: 1fr;
+    @include large-desktop {
+      gap: 22px;
     }
   }
 
@@ -30,8 +31,12 @@
     flex-direction: column;
     gap: 6px;
 
+    @include large-desktop {
+      gap: 8px;
+    }
+
     label {
-      font-size: 12px;
+      font-size: var(--label-size);
       font-weight: 500;
       color: var(--text);
       text-transform: uppercase;
@@ -40,17 +45,22 @@
 
     input,
     select {
-      height: 40px;
+      height: var(--control-h);
       padding: 0 12px;
       border: 1px solid var(--border);
       border-radius: 6px;
       background: var(--bg);
       color: var(--text-h);
-      font-size: 14px;
+      font-size: var(--input-size);
       font-family: inherit;
       outline: none;
       transition: border-color 0.15s ease;
       appearance: none;
+
+      @include large-desktop {
+        padding: 0 16px;
+        border-radius: 8px;
+      }
 
       &:focus {
         border-color: var(--accent);
@@ -69,6 +79,11 @@
       background-position: right 12px center;
       padding-right: 32px;
       cursor: pointer;
+
+      @include large-desktop {
+        background-position: right 16px center;
+        padding-right: 40px;
+      }
     }
   }
 }

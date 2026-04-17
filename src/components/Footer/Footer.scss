@@ -1,14 +1,20 @@
+@use '../../styles/mixins' as *;
+
 .footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 clamp(20px, 3vw, 56px);
   height: 52px;
   border-top: 1px solid var(--border);
   background: var(--bg);
   margin-top: auto;
 
-  @media (max-width: 600px) {
+  @include large-desktop {
+    height: 64px;
+  }
+
+  @include small-mobile {
     flex-direction: column;
     justify-content: center;
     gap: 4px;
@@ -20,6 +26,10 @@
   &__note {
     font-size: 12px;
     color: var(--text);
+
+    @include large-desktop {
+      font-size: 14px;
+    }
   }
 
   &__note {

@@ -1,20 +1,33 @@
+@use '../../styles/mixins' as *;
+
 .vehicle-questions {
   padding: 24px;
   border-bottom: 1px solid var(--border);
 
+  @include large-desktop {
+    padding: 32px;
+  }
+
   &__title {
     margin: 0 0 20px;
-    font-size: 16px;
+    font-size: clamp(1rem, 1.4vw, 1.5rem);
     font-weight: 600;
     color: var(--text-h);
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
+    letter-spacing: -0.02em;
+
+    @include large-desktop {
+      margin: 0 0 28px;
+    }
   }
 
   &__list {
     display: flex;
     flex-direction: column;
     gap: 24px;
+
+    @include large-desktop {
+      gap: 32px;
+    }
   }
 
   &__item {
@@ -35,13 +48,18 @@
       border-radius: 6px;
       background: var(--bg);
       color: var(--text-h);
-      font-size: 14px;
+      font-size: var(--input-size);
       font-family: inherit;
       line-height: 1.5;
       resize: vertical;
       outline: none;
       box-sizing: border-box;
       transition: border-color 0.15s ease;
+
+      @include large-desktop {
+        padding: 14px 16px;
+        border-radius: 8px;
+      }
 
       &:focus {
         border-color: var(--accent);
@@ -57,7 +75,7 @@
 
   &__label {
     margin: 0;
-    font-size: 14px;
+    font-size: var(--input-size);
     color: var(--text-h);
     display: flex;
     align-items: center;
@@ -69,6 +87,10 @@
     font-size: 12px;
     color: var(--text);
     opacity: 0.6;
+
+    @include large-desktop {
+      font-size: 14px;
+    }
   }
 
   &__optional {
@@ -78,6 +100,10 @@
     text-transform: uppercase;
     letter-spacing: 0.4px;
     opacity: 0.7;
+
+    @include large-desktop {
+      font-size: 13px;
+    }
   }
 }
 
@@ -85,6 +111,10 @@
   display: flex;
   gap: 4px;
   flex-shrink: 0;
+
+  @include large-desktop {
+    gap: 6px;
+  }
 
   &__option {
     display: flex;
@@ -94,9 +124,18 @@
     border: 1px solid var(--border);
     border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: var(--input-size);
     color: var(--text-h);
     transition: border-color 0.15s ease, background 0.15s ease;
+
+    @include large-desktop {
+      padding: 8px 22px;
+      border-radius: 8px;
+    }
+
+    @include ultrawide {
+      padding: 10px 26px;
+    }
 
     &:has(input:checked) {
       border-color: var(--accent);

@@ -14,9 +14,9 @@ interface PolicyState extends PolicyDetails {
 }
 
 const defaultDetails: PolicyDetails = {
-  insurer: "",
-  make: "",
-  model: "",
+  insurer: "AMI",
+  make: "Tesla",
+  model: "Model 3",
   registration: "ABC123",
   colour: "",
 };
