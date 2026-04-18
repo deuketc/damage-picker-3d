@@ -2,6 +2,7 @@
 
 .vehicle-questions {
   padding: 24px;
+  min-width: 0;
   border-bottom: 1px solid var(--border);
 
   @include large-desktop {

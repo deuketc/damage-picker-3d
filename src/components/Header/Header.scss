@@ -1,16 +1,15 @@
-@use '../../styles/mixins' as *;
+@use "../../styles/mixins" as *;
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 clamp(20px, 3vw, 56px);
-  height: var(--header-h);
   border-bottom: 1px solid var(--border);
-  background: var(--bg);
   position: sticky;
   top: 0;
   z-index: 100;
+  background-color: var(--theme-header-bg);
 
   &__logo {
     display: flex;
@@ -20,6 +19,28 @@
     @include large-desktop {
       gap: 14px;
     }
+  }
+
+  &__logo-img {
+    max-width: 200px;
+    padding: 15px 0;
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__logo-img--ami {
+    max-width: 200px;
+  }
+
+  &__logo-img--state {
+    max-width: 208px;
+  }
+
+  &__logo-img--iag {
+    max-width: 110px;
   }
 
   &__logo-mark {
@@ -50,26 +71,6 @@
     }
   }
 
-  &__insurer-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 2px 8px;
-    border-radius: 4px;
-    background: var(--accent-bg);
-    border: 1px solid var(--accent-border);
-    color: var(--accent);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-
-    @include large-desktop {
-      font-size: 13px;
-      padding: 3px 10px;
-    }
-  }
-
   &__logo-text {
     font-size: 17px;
     font-weight: 600;
@@ -87,7 +88,7 @@
 
   &__nav-label {
     font-size: 13px;
-    color: var(--text);
+    color: var(--theme-header-copy);
     letter-spacing: 0.4px;
     text-transform: uppercase;
 

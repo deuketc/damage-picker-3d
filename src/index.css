@@ -105,25 +105,67 @@ code {
 /* ── Insurer themes ───────────────────────────────────────── */
 
 [data-insurer="AMI"] {
-  --accent: #d6001c;
-  --accent-bg: rgba(214, 0, 28, 0.08);
-  --accent-border: rgba(214, 0, 28, 0.4);
+  --accent: #00a492;
+  --accent-bg: rgba(0, 164, 146, 0.1);
+  --accent-border: rgba(0, 164, 146, 0.4);
   --theme-logo-bg: #d6001c;
   --theme-logo-text: #fff;
+  --theme-header-bg: #2f2d2e;
+  --theme-header-copy: #ffffff;
+  --theme-footer-bg: #2f2d2e;
+  --theme-footer-copy: #ffffff;
+
+  /* PolicyDetails teal theme */
+  --field-panel-bg: #007a6e;
+  --field-panel-title: #ffc60b;
+  --field-bg: #00a492;
+  --field-border: #009485;
+  --field-text: #f0fffd;
+  --field-label: #ffc60b;
+  --field-focus: #ffc60b;
+  --field-focus-bg: rgba(255, 198, 11, 0.2);
 }
 
 [data-insurer="State"] {
-  --accent: #007a4d;
-  --accent-bg: rgba(0, 122, 77, 0.08);
-  --accent-border: rgba(0, 122, 77, 0.4);
+  --accent: #004b93;
+  --accent-bg: rgba(0, 75, 147, 0.08);
+  --accent-border: rgba(0, 75, 147, 0.4);
   --theme-logo-bg: #007a4d;
   --theme-logo-text: #fff;
+  --theme-header-bg: #ffffff;
+  --theme-header-copy: #242c2e;
+  --theme-footer-bg: #ffffff;
+  --theme-footer-copy: #242c2e;
+
+  /* PolicyDetails blue/pink theme */
+  --field-panel-bg: #003578;
+  --field-panel-title: #eef4ff;
+  --field-bg: #004b93;
+  --field-border: #1a61a8;
+  --field-text: #eef4ff;
+  --field-label: #f595a6;
+  --field-focus: #f595a6;
+  --field-focus-bg: rgba(245, 149, 166, 0.2);
 }
 
 [data-insurer="IAG"] {
-  --accent: #003087;
-  --accent-bg: rgba(0, 48, 135, 0.08);
-  --accent-border: rgba(0, 48, 135, 0.4);
+  --accent: #592c82;
+  --accent-bg: rgba(89, 44, 130, 0.08);
+  --accent-border: rgba(89, 44, 130, 0.4);
   --theme-logo-bg: #003087;
   --theme-logo-text: #fff;
+  --theme-header-bg: #ffffff;
+  --theme-header-copy: #121212;
+  --theme-footer-bg: #ffffff;
+  --theme-footer-copy: #121212;
+
+  /* PolicyDetails purple/white theme */
+  --field-panel-bg: #3d1e5a;
+  --field-panel-title: #ffffff;
+  --field-bg: #592c82;
+  --field-border: #6e3a9a;
+  --field-text: #f5f0ff;
+  --field-label: #ffffff;
+  --field-focus: #ffffff;
+  --field-focus-bg: rgba(255, 255, 255, 0.15);
 }

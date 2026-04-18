@@ -1,4 +1,4 @@
-@use '../../styles/mixins' as *;
+@use "../../styles/mixins" as *;
 
 .footer {
   display: flex;
@@ -9,6 +9,7 @@
   border-top: 1px solid var(--border);
   background: var(--bg);
   margin-top: auto;
+  background-color: var(--theme-footer-bg);
 
   @include large-desktop {
     height: 64px;
@@ -25,7 +26,7 @@
   &__copy,
   &__note {
     font-size: 12px;
-    color: var(--text);
+    color: var(--theme-footer-copy);
 
     @include large-desktop {
       font-size: 14px;

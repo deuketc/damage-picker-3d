@@ -11,46 +11,70 @@
 
 // ── Breakpoint tokens ─────────────────────────────────────────────
 //
-//  small-mobile  ←600px→  mobile  ←700px→  tablet  ←1100px→  desktop  ←1400px→  large-desktop  ←1800px→  ultrawide
+//  small-mobile  ←640px→  mobile  ←768px→  tablet  ←1024px→  desktop  ←1440px→  standard-desktop  ←1920px→  large-desktop  ←2880px→  ultrawide
 //
-$bp-small-mobile:  600px;
-$bp-mobile:        700px;
-$bp-tablet:       1100px;
-$bp-large-desktop: 1400px;
-$bp-ultrawide:     1800px;
-
+$bp-qvga: 320px;
+$bp-wqvga: 480px;
+$bp-hvga: 640px; // small-mobile
+$bp-wvga: 768px; // mobile
+$bp-xga: 1024px; // tablet / desktop boundary
+$bp-wxga: 1280px;
+$bp-wsxga: 1440px; // desktop
+$bp-uxga: 1600px;
+$bp-wuxga: 1920px; // standard-desktop
+$bp-wqhd: 2560px; // large-desktop
+$bp-wqsxga: 2880px; // ultrawide
+$bp-wquxga: 3200px;
 
 // ── Max-width mixins  (styles apply AT OR BELOW the named size) ───
 
 /// Small mobile — e.g. footer column stacking
 @mixin small-mobile {
-  @media (max-width: $bp-small-mobile) { @content; }
+  @media (max-width: $bp-hvga) {
+    @content;
+  }
 }
 
 /// Mobile — single-column layout
 @mixin mobile {
-  @media (max-width: $bp-mobile) { @content; }
+  @media (max-width: $bp-wvga) {
+    @content;
+  }
 }
 
 /// Tablet — two-column layout and below
 @mixin tablet {
-  @media (max-width: $bp-tablet) { @content; }
+  @media (max-width: $bp-xga) {
+    @content;
+  }
 }
-
 
 // ── Min-width mixins  (styles apply AT OR ABOVE the named size) ───
 
 /// Desktop — standard three-column layout (above tablet breakpoint)
 @mixin desktop {
-  @media (min-width: ($bp-tablet + 1px)) { @content; }
+  @media (min-width: ($bp-xga + 1px)) {
+    @content;
+  }
 }
 
 /// Large desktop — scaled-up UI
 @mixin large-desktop {
-  @media (min-width: $bp-large-desktop) { @content; }
+  @media (min-width: $bp-wsxga) {
+    @content;
+  }
 }
 
 /// Ultrawide — maximum scale
 @mixin ultrawide {
-  @media (min-width: $bp-ultrawide) { @content; }
+  @media (min-width: $bp-wuxga) {
+    @content;
+  }
+}
+
+/// WQSXGA — side-by-side viewer/questions layout
+@mixin wqsxga {
+  @media (min-width: $bp-wqsxga) {
+    @content;
+  }
 }
