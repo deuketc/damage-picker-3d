@@ -1,3 +1,5 @@
+@use './styles/mixins' as *;
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -30,11 +32,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  @media (max-width: 1024px) {
+  @include tablet {
     font-size: 16px;
   }
 
-  @media (min-width: 1400px) {
+  @include desktop {
     font-size: 20px;
     --header-h: 76px;
     --control-h: 48px;
@@ -42,15 +44,30 @@
     --input-size: 16px;
   }
 
-  @media (min-width: 1800px) {
+  @include standard-desktop {
     font-size: 22px;
     --header-h: 84px;
     --control-h: 54px;
     --label-size: 14px;
     --input-size: 18px;
   }
-}
 
+  @include large-desktop {
+    font-size: 24px;
+    --header-h: 96px;
+    --control-h: 60px;
+    --label-size: 15px;
+    --input-size: 20px;
+  }
+
+  @include ultrawide {
+    font-size: 26px;
+    --header-h: 108px;
+    --control-h: 66px;
+    --label-size: 16px;
+    --input-size: 22px;
+  }
+}
 
 #root {
   width: 100%;
@@ -74,15 +91,17 @@ h2 {
 h1 {
   font-size: clamp(2rem, 5vw, 7rem);
   letter-spacing: clamp(-1px, -0.03em, -3px);
-  line-height: 1.0;
+  line-height: 1;
   margin: 32px 0;
 }
+
 h2 {
   font-size: clamp(0.9rem, 1.6vw, 2rem);
   line-height: 118%;
   letter-spacing: -0.02em;
   margin: 0 0 8px;
 }
+
 p {
   margin: 0;
 }
@@ -127,9 +146,9 @@ code {
 }
 
 [data-insurer="State"] {
-  --accent: #004b93;
-  --accent-bg: rgba(0, 75, 147, 0.08);
-  --accent-border: rgba(0, 75, 147, 0.4);
+  --accent: #d4456b;
+  --accent-bg: rgba(212, 69, 107, 0.08);
+  --accent-border: rgba(212, 69, 107, 0.4);
   --theme-logo-bg: #007a4d;
   --theme-logo-text: #fff;
   --theme-header-bg: #ffffff;

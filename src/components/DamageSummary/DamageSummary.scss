@@ -3,17 +3,13 @@
 .damage-summary {
   padding: 28px 20px;
 
-  @include large-desktop {
+  @include desktop {
     padding: 36px 28px;
   }
 
   &__title {
+    @include heading-xl;
     margin: 0 0 24px;
-    font-size: clamp(1.4rem, 2.2vw, 3rem);
-    font-weight: 700;
-    color: var(--text-h);
-    letter-spacing: -0.03em;
-    line-height: 1.0;
   }
 
   &__empty {
@@ -30,7 +26,7 @@
     flex-wrap: wrap;
     gap: 8px;
 
-    @include large-desktop {
+    @include desktop {
       gap: 10px;
     }
   }
@@ -44,13 +40,13 @@
     border-radius: 20px;
     font-size: 13px;
 
-    @include large-desktop {
+    @include desktop {
       padding: 6px 14px;
       font-size: 15px;
       border-radius: 24px;
     }
 
-    @include ultrawide {
+    @include standard-desktop {
       padding: 8px 18px;
       font-size: 17px;
     }
@@ -69,12 +65,12 @@
     padding: 1px 6px;
     border-radius: 10px;
 
-    @include large-desktop {
+    @include desktop {
       font-size: 12px;
       padding: 2px 8px;
     }
 
-    @include ultrawide {
+    @include standard-desktop {
       font-size: 13px;
     }
 

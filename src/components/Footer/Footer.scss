@@ -11,7 +11,7 @@
   margin-top: auto;
   background-color: var(--theme-footer-bg);
 
-  @include large-desktop {
+  @include desktop {
     height: 64px;
   }
 
@@ -28,7 +28,7 @@
     font-size: 12px;
     color: var(--theme-footer-copy);
 
-    @include large-desktop {
+    @include desktop {
       font-size: 14px;
     }
   }

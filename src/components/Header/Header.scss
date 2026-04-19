@@ -16,7 +16,7 @@
     align-items: center;
     gap: 10px;
 
-    @include large-desktop {
+    @include desktop {
       gap: 14px;
     }
   }
@@ -56,14 +56,14 @@
     font-weight: 700;
     letter-spacing: 0;
 
-    @include large-desktop {
+    @include desktop {
       width: 36px;
       height: 36px;
       border-radius: 8px;
       font-size: 16px;
     }
 
-    @include ultrawide {
+    @include standard-desktop {
       width: 42px;
       height: 42px;
       border-radius: 10px;
@@ -77,11 +77,11 @@
     color: var(--text-h);
     letter-spacing: -0.3px;
 
-    @include large-desktop {
+    @include desktop {
       font-size: 21px;
     }
 
-    @include ultrawide {
+    @include standard-desktop {
       font-size: 24px;
     }
   }
@@ -92,11 +92,11 @@
     letter-spacing: 0.4px;
     text-transform: uppercase;
 
-    @include large-desktop {
+    @include desktop {
       font-size: 15px;
     }
 
-    @include ultrawide {
+    @include standard-desktop {
       font-size: 16px;
     }
   }

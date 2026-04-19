@@ -26,6 +26,71 @@ $bp-wqhd: 2560px; // large-desktop
 $bp-wqsxga: 2880px; // ultrawide
 $bp-wquxga: 3200px;
 
+// ── Heading mixins ────────────────────────────────────────────────
+
+/// Large panel title — PolicyDetails, DamageSummary
+@mixin heading-xl {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text-h);
+
+  @include desktop {
+    font-size: 1.7rem;
+  }
+
+  @include standard-desktop {
+    font-size: 1.9rem;
+  }
+
+  @include large-desktop {
+    font-size: 2.1rem;
+  }
+}
+
+/// Section heading — VehicleQuestions
+@mixin heading-md {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--text-h);
+
+  @include desktop {
+    font-size: 1.15rem;
+  }
+
+  @include standard-desktop {
+    font-size: 1.3rem;
+  }
+
+  @include large-desktop {
+    font-size: 1.45rem;
+  }
+}
+
+/// Sub-section heading — available for future components
+@mixin heading-sm {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--text-h);
+
+  @include desktop {
+    font-size: 0.95rem;
+  }
+
+  @include standard-desktop {
+    font-size: 1.05rem;
+  }
+
+  @include large-desktop {
+    font-size: 1.15rem;
+  }
+}
+
 // ── Max-width mixins  (styles apply AT OR BELOW the named size) ───
 
 /// Small mobile — e.g. footer column stacking
@@ -51,29 +116,29 @@ $bp-wquxga: 3200px;
 
 // ── Min-width mixins  (styles apply AT OR ABOVE the named size) ───
 
-/// Desktop — standard three-column layout (above tablet breakpoint)
+/// Desktop — scaled-up UI (1440px+)
 @mixin desktop {
-  @media (min-width: ($bp-xga + 1px)) {
-    @content;
-  }
-}
-
-/// Large desktop — scaled-up UI
-@mixin large-desktop {
   @media (min-width: $bp-wsxga) {
     @content;
   }
 }
 
-/// Ultrawide — maximum scale
-@mixin ultrawide {
+/// Standard desktop — further scaling (1920px+)
+@mixin standard-desktop {
   @media (min-width: $bp-wuxga) {
     @content;
   }
 }
 
-/// WQSXGA — side-by-side viewer/questions layout
-@mixin wqsxga {
+/// Large desktop — maximum scaling (2560px+)
+@mixin large-desktop {
+  @media (min-width: $bp-wqhd) {
+    @content;
+  }
+}
+
+/// Ultrawide — extreme scale (2880px+)
+@mixin ultrawide {
   @media (min-width: $bp-wqsxga) {
     @content;
   }

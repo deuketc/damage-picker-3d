@@ -6,7 +6,7 @@
   height: clamp(320px, 50vh, 620px);
   border-bottom: 1px solid var(--border);
 
-  @include wqsxga {
+  @include ultrawide {
     height: unset;
     align-self: stretch;
   }

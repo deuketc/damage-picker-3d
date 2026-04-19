@@ -1,3 +1,5 @@
+@use '../../styles/mixins' as *;
+
 .step-nav {
   display: flex;
   align-items: center;
@@ -5,15 +7,33 @@
   padding: 20px 24px;
   min-width: 0;
 
+  @include desktop {
+    padding: 24px 32px;
+  }
+
+  @include standard-desktop {
+    padding: 28px 40px;
+  }
+
   &__btn {
-    height: 40px;
+    height: var(--control-h);
     padding: 0 20px;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: var(--input-size);
     font-family: inherit;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+
+    @include desktop {
+      padding: 0 28px;
+      border-radius: 8px;
+    }
+
+    @include standard-desktop {
+      padding: 0 36px;
+      border-radius: 10px;
+    }
 
     &--prev {
       background: transparent;

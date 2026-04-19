@@ -3,17 +3,13 @@
 .policy-details {
   padding: 28px 20px;
 
-  @include large-desktop {
+  @include desktop {
     padding: 36px 28px;
   }
 
   &__title {
+    @include heading-xl;
     margin: 0 0 28px;
-    font-size: clamp(1.4rem, 2.2vw, 3rem);
-    font-weight: 700;
-    color: var(--text-h);
-    letter-spacing: -0.03em;
-    line-height: 1;
   }
 
   &__grid {
@@ -21,7 +17,7 @@
     grid-template-columns: 1fr;
     gap: 16px;
 
-    @include large-desktop {
+    @include desktop {
       gap: 22px;
     }
   }
@@ -31,7 +27,7 @@
     flex-direction: column;
     gap: 6px;
 
-    @include large-desktop {
+    @include desktop {
       gap: 8px;
     }
 
@@ -45,6 +41,7 @@
 
     input,
     select {
+      width: 100%;
       height: var(--control-h);
       padding: 0 12px;
       border: 1px solid var(--border);
@@ -56,8 +53,9 @@
       outline: none;
       transition: border-color 0.15s ease;
       appearance: none;
+      box-sizing: border-box;
 
-      @include large-desktop {
+      @include desktop {
         padding: 0 16px;
         border-radius: 8px;
       }
@@ -80,7 +78,7 @@
       padding-right: 32px;
       cursor: pointer;
 
-      @include large-desktop {
+      @include desktop {
         background-position: right 16px center;
         padding-right: 40px;
       }
