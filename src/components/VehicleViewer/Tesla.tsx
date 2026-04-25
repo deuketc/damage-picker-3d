@@ -122,7 +122,7 @@ function usePanelProps(
   };
 }
 
-const damagedMaterial = new THREE.MeshStandardMaterial({ color: "#ca1717" });
+const damagedMaterial = new THREE.MeshStandardMaterial({ color: "#a20000" });
 
 function usePlateTexture(registration: string) {
   return useMemo(() => {
@@ -199,7 +199,7 @@ export default function Model(props: ThreeElement<typeof THREE.Group>) {
   );
   const damagedWindowMaterial = useMemo(() => {
     const mat = (materials.Windows as THREE.MeshStandardMaterial).clone();
-    mat.color.set("#c52222");
+    mat.color.set("#a20000");
     return mat;
   }, [materials.Windows]);
 

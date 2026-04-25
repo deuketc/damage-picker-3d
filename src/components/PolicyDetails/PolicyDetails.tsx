@@ -4,11 +4,11 @@ import "./PolicyDetails.scss";
 const INSURERS = ["AMI", "State", "IAG"] as const;
 
 const COLOURS = [
-  { label: "White", value: "white" },
-  { label: "Black", value: "black" },
-  { label: "Silver", value: "silver" },
-  { label: "Red", value: "red" },
-  { label: "Blue", value: "blue" },
+  { label: "White", value: "#F5F5F5" },
+  { label: "Black", value: "#2F343A" },
+  { label: "Green", value: "#1F3D2B" },
+  { label: "Red", value: "#8B1E2D" },
+  { label: "Blue", value: "#1E3A5F" },
 ] as const;
 
 export default function PolicyDetails() {

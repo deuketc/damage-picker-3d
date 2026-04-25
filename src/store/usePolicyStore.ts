@@ -14,11 +14,11 @@ interface PolicyState extends PolicyDetails {
 }
 
 const defaultDetails: PolicyDetails = {
-  insurer: "AMI",
+  insurer: "State",
   make: "Tesla",
   model: "Model 3",
   registration: "ABC123",
-  colour: "",
+  colour: "White",
 };
 
 export const usePolicyStore = create<PolicyState>((set) => ({
